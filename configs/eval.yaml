@@ -2,17 +2,19 @@
 
 defaults:
   - _self_
-  - data: mnist.yaml # choose datamodule with `test_dataloader()` for evaluation
-  - model: mnist.yaml
+  - data: tpp_dataset.yaml # mnist.yaml # choose datamodule with `test_dataloader()` for evaluation
+  - model: thp_mix.yaml # thp_mix.yaml intensity_free.yaml mnist.yaml
   - logger: null
   - trainer: default.yaml
   - paths: default.yaml
   - extras: default.yaml
   - hydra: default.yaml
 
-task_name: "eval"
+task_name: ${data.datasets.dataset}_${model.net.name}_${tag}/eval # "eval"
 
 tags: ["dev"]
+tag: "final"
 
 # passing checkpoint path is necessary for evaluation
-ckpt_path: ???
+ckpt_path: ${paths.ckpt_dir}/${data.datasets.dataset}_${model.net.name}/checkpoint/best_eval/rmse/ckpt_engine.pth.tar
+

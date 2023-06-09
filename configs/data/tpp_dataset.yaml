@@ -1,0 +1,19 @@
+_target_: src.data.tpp_dataset.TPPDataModule
+
+defaults:
+  - _self_
+  - datasets: uber_drop
+
+data_dir: ${paths.data_dir} # /shared-data/TPP
+batch_size: 16
+num_workers: 4
+pin_memory: False
+
+train_rate: 1.0
+eval_rate: 1.0
+noise_rate: 0.0
+seq_rate: 1.0
+missing_rate: 0.0
+use_mark: True
+run_bootstrap: False
+

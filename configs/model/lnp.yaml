@@ -1,0 +1,40 @@
+_target_: src.models.tpp_module.TPPLitModule
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: True
+  lr: 0.0001
+  weight_decay: 0.0001
+  eps: 1e-05
+  betas: [0.9, 0.999]
+
+net:
+  _target_: src.models.tpp.tpp_network.TransformerMix
+  name: 'lnp'
+  num_classes: ${data.datasets.num_classes}
+  d_model: 64
+  d_inner: 64
+  n_layers: 2
+  cattn_n_layers: 1
+  n_head: 1
+  d_k: 64
+  d_v: 64
+  dropout: 0.1
+  attn_l: 0
+  base_l: 0
+  perm_invar: True
+  use_avg: True
+  share_weights: True
+  attn_only: False
+  concat: False
+  num_latent: 64
+  vi_method: 'npvi' # None
+  num_z_samples: 32
+  compute_acc: True
+
+  activation:
+    name: tanh
+    #name: snake
+    in_features: ${model.net.d_model}
+    trainable: True
+

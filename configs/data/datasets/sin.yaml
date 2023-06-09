@@ -1,0 +1,6 @@
+dataset: 'sin'
+num_classes: 1
+
+# so_fold1: 22, mooc: 97, reddit: 984, wiki: 7628, 8226
+# sin: 1, uber_drop: 1, taxi_times_jan_feb : 1
+
