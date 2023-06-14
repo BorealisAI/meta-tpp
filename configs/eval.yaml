@@ -18,3 +18,5 @@ tag: "final"
 # passing checkpoint path is necessary for evaluation
 ckpt_path: ${paths.ckpt_dir}/${data.datasets.dataset}_${model.net.name}/checkpoint/best_eval/rmse/ckpt_engine.pth.tar
 
+# seed for random number generators in pytorch, numpy and python.random
+seed: 1
