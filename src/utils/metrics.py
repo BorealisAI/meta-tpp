@@ -26,7 +26,7 @@ class MaskedRMSE(Metric):
         self.preds = torch.cat((self.preds, preds))
         self.targets = torch.cat((self.targets, targets))
         self.masks = torch.cat((self.masks, masks))
-        self.total += masks.sum() #+ masks.shape[0]
+        self.total += masks.sum()
 
     def compute(self):
         se = torch.tensor([torch.sum(pred[mask] - target[mask]) ** 2 for

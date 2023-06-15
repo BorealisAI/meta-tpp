@@ -75,17 +75,6 @@ class TPPLitModule(LightningModule):
         if kl is not None:
             loss += kl
 
-        # weight decay
-        #weight_squared = 0.
-        #for name, params in self.net.named_parameters():
-        #    for exclude_layer_keyword in self.exclude_layer_keywords:
-        #        if exclude_layer_keyword in name:
-        #            break
-        #    else:
-        #        weight_squared += torch.sum(params ** 2)
-        #weight_squared *= 0.5
-        #loss += self.weight_decay * weight_squared
-
         output_dict[constants.LOSS] = loss
         return output_dict
 
