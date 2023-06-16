@@ -12,6 +12,7 @@ pretrained models and utils.
 pip install -r requirements.txt
 ```
 
+
 ## Pre-trained models
 We also provide the checkpoints for Intensity free, THP+ and Attentive TPP on all the datasets.
 Please download the compress file in this link, unzip it and locate it in the `$ROOT` directory.
@@ -32,6 +33,21 @@ python src/eval.py data/datasets=$DATASET model=$MODEL
 ```
 Here, the default checkpoint paths are set to the ones in `checkpoints` directory we provided above.
 To use different checkpoints, please chagne `ckpt_path` argument in `configs/eval.yaml`.
+
+## Modifications
+We made some modifications during code refactorization after ICLR 2023.
+For the NLL metric, we took out L2 norm of model params, which we had to include for implementation purpose using the internal pipeline.
+Note that since our proposed model contains stricly more number of parameters, this change is on favor of our method.
+For the RMSE metric, we divide MSE by the number events for which we previously included the first events but not anymore.
+We made this change because we do not make predictions on the first events.
+Note that it is applied the same way for every model.
+These changes do not change the rank of models nor the narrative of the paper.
+
+Furthermore, instead of using boostrapped confidence interval (parentheses in Table 1 and 2), we encourage researchers to use confidence interval using different random seeds.
+We provide a simple script for this as follows,
+```bash
+bash run_seeds.sh -d mooc -l 0.0001 -w 0.00001
+```
 
 
 ## Citation
