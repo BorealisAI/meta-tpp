@@ -65,7 +65,6 @@ mpmath==1.3.0
 msgpack==1.0.5
 multidict==6.0.4
 networkx==3.1
--e git+https://github.com/mbilos/neural-flows-experiments.git@bd19f7c92461e83521e268c1a235ef845a3dd963#egg=nfe
 nodeenv==1.8.0
 numpy==1.24.3
 nvidia-cublas-cu11==11.10.3.66
