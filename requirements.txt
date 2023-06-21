@@ -56,7 +56,7 @@ lightning-utilities==0.8.0
 lit==16.0.5
 lxml==4.9.2
 Mako==1.2.4
-markdown-it-py==2.2.0
+markdown-it-py==3.0.0
 MarkupSafe==2.1.2
 matplotlib==3.7.1
 matplotlib-inline==0.1.6
