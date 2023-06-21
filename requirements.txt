@@ -96,7 +96,7 @@ prompt-toolkit==3.0.38
 psutil==5.9.5
 ptyprocess==0.7.0
 pure-eval==0.2.2
-pydantic==1.10.8
+pydantic==1.10.9
 Pygments==2.15.1
 PyJWT==2.7.0
 pynvim==0.4.3
