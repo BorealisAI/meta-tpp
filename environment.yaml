@@ -1,0 +1,66 @@
+# MIT License
+
+# Copyright (c) 2021 ashleve
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# reasons you might want to use `environment.yaml` instead of `requirements.txt`:
+# - pip installs packages in a loop, without ensuring dependencies across all packages
+#   are fulfilled simultaneously, but conda achieves proper dependency control across
+#   all packages
+# - conda allows for installing packages without requiring certain compilers or
+#   libraries to be available in the system, since it installs precompiled binaries
+
+name: myenv
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+# it is strongly recommended to specify versions of packages installed through conda
+# to avoid situation when version-unspecified packages install their latest major
+# versions which can sometimes break things
+
+# current approach below keeps the dependencies in the same major versions across all
+# users, but allows for different minor and patch versions of packages where backwards
+# compatibility is usually guaranteed
+
+dependencies:
+  - pytorch=2.*
+  - torchvision=0.*
+  - lightning=2.*
+  - torchmetrics=0.*
+  - hydra-core=1.*
+  - rich=13.*
+  - pre-commit=3.*
+  - pytest=7.*
+
+  # --------- loggers --------- #
+  # - wandb
+  # - neptune-client
+  # - mlflow
+  # - comet-ml
+  # - aim>=3.16.2 # no lower than 3.16.2, see https://github.com/aimhubio/aim/issues/2550
+
+  - pip>=23
+  - pip:
+      - hydra-optuna-sweeper
+      - hydra-colorlog
+      - pyrootutils

@@ -1,0 +1,25 @@
+# Copyright (c) 2024-present, Royal Bank of Canada.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+_target_: src.models.tpp_module.TPPLitModule
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: True
+  lr: 0.0001
+  weight_decay: 0.0001
+  eps: 1e-05
+  betas: [0.9, 0.999]
+
+net:
+  _target_: src.models.tpp.tpp_network.IntensityFreePredictor
+  name: 'if'
+  hidden_dim: 96
+  num_components: 8
+  num_classes: ${data.datasets.num_classes}
+  activation:
+    name: tanh
+    in_features: ${model.net.hidden_dim}

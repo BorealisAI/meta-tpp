@@ -1,0 +1,28 @@
+# Copyright (c) 2024-present, Royal Bank of Canada.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+# @package _global_
+
+defaults:
+  - _self_
+  - data: tpp_dataset.yaml # mnist.yaml # choose datamodule with `test_dataloader()` for evaluation
+  - model: thp_mix.yaml # thp_mix.yaml intensity_free.yaml mnist.yaml
+  - logger: null
+  - trainer: default.yaml
+  - paths: default.yaml
+  - extras: default.yaml
+  - hydra: default.yaml
+
+task_name: ${data.datasets.dataset}_${model.net.name}_${tag}/eval # "eval"
+
+tags: ["dev"]
+tag: "final"
+
+# passing checkpoint path is necessary for evaluation
+ckpt_path: ${paths.ckpt_dir}/${data.datasets.dataset}_${model.net.name}/checkpoint/best_eval/rmse/ckpt_engine.pth.tar
+
+# seed for random number generators in pytorch, numpy and python.random
+seed: 1
